@@ -105,7 +105,7 @@ Eseguire in **ordini e momenti separati**. Mantenere flussi distinti fino alla c
 ```
 • Dadi a 6 facce
 • Mappatura che non sprechi entropia
-• Esempio: scartare 6 e usare 1–5
+• Esempio: scartare 5 e 6 e usare 1–4
 • Registrare senza selezione a posteriori
 ```
 
