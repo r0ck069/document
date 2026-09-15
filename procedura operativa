@@ -10,7 +10,7 @@ Documento operativo - sessione live air-gapped
 Contesto di sicurezza (stima relativa)
 
 In  uno  scenario  con  sessione  live  da  ISO  verificata, sorgenti multiple
-indipendenti  (HTML  RAW  + moneta + dadi + altra sorgente), concatenazione ed
+indipendenti  autoprodotte (HTML  RAW  + moneta + dadi + altre sorgenti), concatenazione ed
 estrazione  con Peres e Toeplitz (matrice da ulteriore sorgente indipendente),
 la  robustezza  stimata  rispetto a un hardware wallet di buona qualita' usato
 correttamente  e'  circa  64/100.  Questa  procedura  serve  a massimizzare il
