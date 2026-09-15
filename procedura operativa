@@ -8,10 +8,10 @@ Documento operativo – sessione live air-gapped ·
 
 Contesto di sicurezza (stima relativa)
 In uno scenario con sessione live da ISO verificata, sorgenti multiple indipendenti (HTML RAW + moneta + dadi +
-altra sorgente), concatenazione e estrazione con von Neumann, Peres e Toeplitz (matrice da ulteriore sorgente
-indipendente), la robustezza stimata rispetto a un hardware wallet di buona qualità usato correttamente è circa
-64/100. Questa procedura serve a massimizzare il risultato pratico di quello scenario. Non rende il metodo
-equivalente a un dispositivo dedicato auditato.
+altra sorgente), concatenazione e estrazione con Peres e Toeplitz (matrice da ulteriore sorgente indipendente),
+la robustezza stimata rispetto a un hardware wallet di buona qualità usato correttamente è circa 64/100. 
+Questa procedura serve a massimizzare il risultato pratico di quello scenario. Non rende il metodo equivalente
+a un dispositivo dedicato auditato.
 0. Principi non negoziabili
 • Tutto avviene su sistema live avviato da ISO con hash (e se possibile firma) verificati. Nessun sistema
 installato sull’HD viene usato per la cerimonia.
@@ -19,8 +19,8 @@ installato sull’HD viene usato per la cerimonia.
 • Nessuna persistenza: a fine lavoro si spegne senza salvare stato sul disco del PC.
 • Ogni sorgente di entropia è prodotta in proprio, in momenti e con metodi indipendenti; i materiali intermedi
 vengono distrutti.
-• L’HTML fornisce solo una componente. Il passo di estrazione forte (von Neumann / Peres / Toeplitz) avviene
-fuori dall’HTML, con strumenti controllati.
+• L’HTML fornisce solo una componente. Il passo di estrazione forte (Peres / Toeplitz) avviene fuori dall’HTML, 
+con strumenti controllati.
 • Si lavora da soli o con persone di fiducia assoluta; nessuna ripresa, nessuna condivisione in chiaro dei valori.
 1. Preparazione (giorni prima)
 1.1 Ambiente software
@@ -123,7 +123,7 @@ Ordine consigliato
 Su sorgenti sbilanciate o sul flusso concatenato, secondo il protocollo scelto. Scartare le coppie uguali; 01→0,
 10→1 (o regola equivalente fissata prima).
 2. Peres (iterativo)
-Applicare dopo o in alternativa controllata a von Neumann, secondo l’implementazione verificata.
+Applicare a seconda l’implementazione verificata.
 3. Toeplitz hashing
 Generare la matrice Toeplitz da un’ulteriore sorgente indipendente (non riusare i bit in estrazione). Dimensionare
 input e output in modo conservativo: l’output deve essere nettamente più corto dell’entropia minima stimata
@@ -177,7 +177,7 @@ Trascrizione + distruzione intermedi + spegnimento live
 Valori indicativi rispetto a un hardware wallet di buona qualità usato correttamente (= 100).
 Scenario Voto
 Solo HTML, browser normale, file unici ~32
-HTML + moneta + dadi + altra sorgente + von Neumann/Peres/Toeplitz + hmac/hkdf + live ISO verificata 64/68
+HTML + moneta + dadi + altra sorgente + Peres/Toeplitz + hmac/hkdf + live ISO verificata 64/68
 Come sopra, con implementazione estrattori e procedura formalmente verificate / multi-persona 70–75
 Hardware wallet di riferimento 100
 
