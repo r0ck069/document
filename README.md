@@ -31,7 +31,7 @@ Verificare SHA256 e firma GPG da fonti multiple
 
 # Preparazione chiavette
 Scrivere ISO su chiavetta dedicata (dd o equivalente)
-Su seconda chiavetta: HTML v1.2 + script estrazione revisionati
+Su seconda chiavetta: HTML + script estrazione revisionati
 ```
 
 **⚠️ Importante:** Nulla da rete, tutto verificato offline.
@@ -43,8 +43,8 @@ Su seconda chiavetta: HTML v1.2 + script estrazione revisionati
 - 📷 Fotocamera RAW (non compresso, o lossless se necessario)
 - 📸 Due+ dark frame (scatti a otturatore chiuso, stesse impostazioni)
 - 📝 Carta e penna per appunti temporanei
-- 🔒 Terza sorgente indipendente controllata
-
+- 🔒 Terza sorgente indipendente controllata (radio FM o microfono in raw)
+- 🔒 Quarta sorgente indipendente controllata (csv da sensori del telefono)
 ---
 
 ## 🖥️ 2. Avvio dell'Ambiente Sicuro
@@ -64,7 +64,7 @@ Su seconda chiavetta: HTML v1.2 + script estrazione revisionati
 
 Eseguire in **ordini e momenti separati**. Mantenere flussi distinti fino alla concatenazione.
 
-### 3.A — Sorgente Fotografica (HTML v1.2)
+### 3.A — Sorgente Fotografica (HTML)
 
 ```
 1. Copiare RAW e dark frame in sessione live
@@ -134,7 +134,7 @@ Eseguire in **ordini e momenti separati**. Mantenere flussi distinti fino alla c
 
 ## 🎲 5. Estrazione di Casualità (fuori dall'HTML)
 
-### 5.1 — von Neumann (Debiasing a Coppie)
+### 5.1 — von Neumann (Debiasing a Coppie) (DISMESSO)
 
 ```
 Su sorgenti sbilanciate o sul flusso concatenato:
@@ -145,10 +145,10 @@ Su sorgenti sbilanciate o sul flusso concatenato:
 Nota: Può essere sostituito con Peres
 ```
 
-### 5.2 — Peres (Iterativo)
+### 5.2 — Peres (Iterativo) (SOSTITUISCE IN TUTTO VON NEUMANN)
 
 ```
-Applicare dopo o in alternativa controllata a von Neumann
+Piu efficente di Von Neumann
 Secondo implementazione verificata
 ```
 
@@ -269,10 +269,10 @@ Trascrizione + distruzione intermedi + spegnimento live
 
 | Scenario | Voto |
 |----------|------|
-| Solo HTML, browser normale, file unici | ~32 |
-| HTML + moneta + dadi + altra + von Neumann/Peres/Toeplitz + hmac/hkdf + ISO live verificata | 64/68 |
-| Come sopra + estrattori e procedura formalmente verificate / multi-persona | 70–75 |
-| **Hardware wallet di riferimento** | **100** |
+| Solo HTML, browser normale, file unici                                                       | ~32   |
+| HTML + moneta + dadi + altre + Peres/Toeplitz + hmac/hkdf + ISO live verificata              | 64/68 |
+| Come sopra + estrattori e procedura formalmente verificate / multi-persona                   | 70–75 |
+| **Hardware wallet di riferimento**                                                           |**100**|
 
 ### 📝 Considerazioni
 
@@ -297,6 +297,5 @@ Restano **differenze strutturali** rispetto a hardware wallet dedicato:
 
 ---
 
-**Ultima revisione:** 2026-09-15  
 **Lingua:** Italiano  
 **Status:** ⚠️ Educational Only
