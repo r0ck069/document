@@ -1,10 +1,10 @@
 PROCEDURA OPERATIVA
-Cerimonia multi-sorgente di generazione entropia / seed
+Cerimonia multi-sorgente di generazione entropia autoprodotta
 
-HTML estrattore RAW fotografico (v1.2) + moneta + dadi + sorgente indipendente
+HTML estrattore RAW fotografico + moneta + dadi + sorgente audio indipendente RAW.
 
 → von Neumann → Peres → Toeplitz → hash/HKDF → seed
-Documento operativo – sessione live air-gapped · generato 2026-09-05
+Documento operativo – sessione live air-gapped ·
 
 Contesto di sicurezza (stima relativa)
 In uno scenario con sessione live da ISO verificata, sorgenti multiple indipendenti (HTML RAW + moneta + dadi +
@@ -90,7 +90,7 @@ Procedura operativa – Cerimonia multi-sorgente di entropia Uso personale / off
 Pagina 3
 
 Ordine consigliato
-1. von Neumann (debiasing a coppie)
+1. von Neumann (debiasing a coppie)(sostituito con Peres)
 Su sorgenti sbilanciate o sul flusso concatenato, secondo il protocollo scelto. Scartare le coppie uguali; 01→0,
 10→1 (o regola equivalente fissata prima).
 2. Peres (iterativo)
@@ -99,13 +99,12 @@ Applicare dopo o in alternativa controllata a von Neumann, secondo l’implement
 Generare la matrice Toeplitz da un’ulteriore sorgente indipendente (non riusare i bit in estrazione). Dimensionare
 input e output in modo conservativo: l’output deve essere nettamente più corto dell’entropia minima stimata
 dell’input. Preferire implementazione corta e letta riga per riga.
-Obiettivo: stringa finale di lunghezza pari (o superiore con margine) a quella richiesta (es. 256 bit per seed BIP39 a
-24 parole).
+Obiettivo: stringa finale di lunghezza pari (o superiore con margine) a quella richiesta.
 6. Derivazione del seed finale
 1. Sulla stringa estratta applicare un’unica condensazione crittografica robusta (SHA-256/SHA-512 oppure
 HKDF-SHA256/SHA512 con info/context fissi e non secret).
-2. Se serve mnemonic BIP39: prendere i bit necessari (128 o 256) + checksum secondo BIP39, con tool offline di
-fiducia o implementazione minimale verificata.
+2. Se serve mnemonic BIP39 (non consigliato): prendere i bit necessari (128 o 256) + checksum secondo BIP39, con tool
+offline di fiducia o implementazione minimale verificata.
 3. Trascrivere il mnemonic a mano su supporto duraturo (metallo / carta di qualità) in momento controllato.
 4. Non fotografare, non digitare su dispositivi connessi, non inviare.
 7. Distruzione e chiusura
@@ -124,12 +123,12 @@ o su hardware wallet in modalità di solo controllo (senza esporre il seed a dis
 • Non usare il PC con il sistema installato sull’HD per la cerimonia.
 • Non restare collegati in rete.
 • Non riusare gli stessi RAW, le stesse sequenze di dadi/moneta o la stessa matrice Toeplitz.
-• Non affidare il passo Toeplitz / von Neumann / Peres all’HTML.
+• Non affidare tutto al solo passo Toeplitz / Peres.
 • Non conservare i file grezzi «per sicurezza».
 • Non generare il seed e usarlo subito su una macchina online.
 10. Riepilogo del flusso
 ISO verificata → live air-gapped
-■■■ RAW unici + dark frame → HTML v1.2 → bit grezzi
+■■■ RAW unici + dark frame → HTML → bit grezzi
 ■■■ Moneta (procedura fissa)
 ■■■ Dadi (procedura fissa)
 ■■■ Altra sorgente indipendente
@@ -140,16 +139,16 @@ Procedura operativa – Cerimonia multi-sorgente di entropia Uso personale / off
 Pagina 4
 Concatenazione (ordine fisso deciso in anticipo)
 ↓
-von Neumann → Peres → Toeplitz (matrice da sorgente ancora diversa)
+Peres → Toeplitz (matrice da sorgente ancora diversa)
 ↓
-Hash / HKDF → seed / BIP39
+Hash / HKDF → seed 
 ↓
 Trascrizione + distruzione intermedi + spegnimento live
 11. Riferimento stime di robustezza (relative)
 Valori indicativi rispetto a un hardware wallet di buona qualità usato correttamente (= 100).
 Scenario Voto
 Solo HTML, browser normale, file unici ~32
-HTML + moneta + dadi + altra sorgente + von Neumann/Peres/Toeplitz + live ISO verificata 64
+HTML + moneta + dadi + altra sorgente + von Neumann/Peres/Toeplitz + hmac/hkdf + live ISO verificata 64/68
 Come sopra, con implementazione estrattori e procedura formalmente verificate / multi-persona 70–75
 Hardware wallet di riferimento 100
 
