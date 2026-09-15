@@ -38,10 +38,10 @@ Su seconda chiavetta: HTML + script estrazione revisionati
 
 ### 1.2 Materiali Fisici
 
-- 🪙 Moneta equilibrata (meglio più monete)
-- 🎲 Dadi a 6 facce di qualità
+- 🪙 Moneta equilibrata - da 2 euro, nasce bilanciata.
+- 🎲 Dadi a 6 facce di qualità + 8 numeri della tombola/bingo
 - 📷 Fotocamera RAW (non compresso, o lossless se necessario)
-- 📸 Due+ dark frame (scatti a otturatore chiuso, stesse impostazioni)
+- 📸 Due o + scatti a otturatore chiuso, stesse impostazioni(dark frame)
 - 📝 Carta e penna per appunti temporanei
 - 🔒 Terza sorgente indipendente controllata (radio FM o microfono in raw)
 - 🔒 Quarta sorgente indipendente controllata (csv da sensori del telefono)
