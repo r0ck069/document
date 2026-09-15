@@ -3,7 +3,7 @@ Cerimonia multi-sorgente di generazione entropia autoprodotta
 
 HTML estrattore RAW fotografico + moneta + dadi + sorgente audio indipendente RAW.
 
-→ von Neumann → Peres → Toeplitz → hash/HKDF → seed
+ Peres → Toeplitz → hash/HKDF → seed
 Documento operativo – sessione live air-gapped ·
 
 Contesto di sicurezza (stima relativa)
@@ -66,31 +66,60 @@ distribuzione sulle tre finestre.
 10. Salvare l’output .bin (o sequenza bit) su supporto temporaneo o in RAM.
 11. Annotare su carta temporanea solo: bit validi, eventuale remainder, stima post-dipendenza.
 12. Chiudere il browser.
-3.B Moneta
-Eseguire centinaia di lanci se possibile. Registrare in modo sistematico (es. Testa=1, Croce=0) senza correggere i
-risultati. Usare procedura fissa decisa in anticipo (altezza, superficie, scarto di lanci ambigui secondo regola
-predefinita).
-3.C Dadi
-Preferire dadi a 6 facce e mappatura che non sprechi troppa entropia (es. scartare i 6 e usare 1–5, oppure altri
-metodi noti). Registrare senza selezione a posteriori.
-3.D Altra sorgente indipendente
-Stesso principio: processo fisico sotto controllo diretto, registrato integralmente, indipendente dalle altre sorgenti.
+
+3.B Moneta → 1 bit
+Preferibile una moneta bilanciata (2 euro in buone condizioni).
+Registrare in modo sistematico le estraizoni (es. Testa=1, Croce=0) senza correggere i risultati. Usare procedura
+fissa decisa in anticipo (altezza, superficie, scarto di lanci ambigui secondo regola predefinita).
+
+3.C Dado → 1 o 2 bit con rejection sampling
+Preferire dadi a 6 facce e mappatura che non sprechi troppa entropia ( usare solo 1–4 ). 
+Consigliato, se si estrae 1 e 2 segna bit 0, se 3 e 4 segna bit 1, se esce 5 o 6 rilancia (genera 1 bit)
+Oppure se esce da 1 a 4 : 1→00 2→01 3→10 4→11 ,se esce 5 e 6 rilancia (genera 2 bit)
+Registrare senza selezione a posteriori. 
+3.D Pallina 1–8 → 3 bit
+Numeri da 1 a 8 della tombola/bingo. Segna l'estratto e reinseriscilo per la successiva estrazione.
+Stesso principio: processo fisico sotto controllo diretto, registrato integralmente, indipendente dalle altre
+sorgenti.
+
+Ordine fisso: PALLINA → DADO → MONETA. 
+Usare 8 numeri da 1 a 8 (tombola o bingo) e reinserire ogni pallina dopo l'estrazione.
+Dado, usare la codifica pratica 1–4 scelta; se esce 5 o 6, rilanciare il dado. 
+Moneta: TESTA = 0, CROCE = 1.
+Fissare questa o altre convenzioni prima di inziare e mantenerle durante questa fase. 
+
+Completare almeno 60/80 turni validi. Non eliminare, riordinare o  scegliere risultati dopo averli visti. 
+Converti i risultati ottenuti in bit: pallina>3bit / dado>1 o 2bit a seconda del metodo scelto / moneta>1bit 
+per tutti i turni effettuati, sempre rigorosamente con lo stesso ordine una volta iniziata questa fase.
+Si puo in caso fare prima tutte e 80 le estrazioni del dado, poi 80 della moneta poi della pallina ,l'importante
+e' riportare correttamente tutto in sequenza e convertire con la stessa sequenza scelta all'inizio cio' che si 
+e' ottenuto. 
+
+5. Griglia compatta - 60/80 turni
+Registrare solo i valori e i bit, senza note.
+Pallina>3bit | Dado>1 o 2bit | Moneta>1bit
++----+----+--------+---+--------+----+-------+
+| #  | Pa | P-bit  | Da| D-bit  | Mo |5/6 bit|
++----+----+--------+---+--------+----+-------+
+|  1 |  8 | 111    | 2 |  0     |(T)0| 11100 |
+|  2 |    |        |   |        |    |       |
+|  3 |    |        |   |        |    |       |
+...
+| 80 |    |        |   |        |    |       |
++----+----+--------+---+--------+----+-------+
 4. Concatenazione
 1. Portare tutte le sequenze grezze nell’ambiente live.
 2. Concatenare in un ordine fisso e deciso in anticipo (es. foto → moneta → dadi → altra). Non riordinare in
 base ai dati osservati.
 3. Lavorare su sequenze di bit o byte in modo coerente.
 4. Non inserire timestamp, nomi file o metadati nel flusso di entropia.
-5. Estrazione di casualità (fuori dall’HTML)
-Questa fase non deve passare dall’HTML. Usare script locali revisionati o strumenti minimali della live (es. Python
-della distro).
 
 Procedura operativa – Cerimonia multi-sorgente di entropia Uso personale / offline
 
 Pagina 3
 
 Ordine consigliato
-1. von Neumann (debiasing a coppie)(sostituito con Peres)
+1. von Neumann (debiasing a coppie)(sostituito con Peres + efficiente)
 Su sorgenti sbilanciate o sul flusso concatenato, secondo il protocollo scelto. Scartare le coppie uguali; 01→0,
 10→1 (o regola equivalente fissata prima).
 2. Peres (iterativo)
