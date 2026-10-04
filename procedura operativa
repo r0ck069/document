@@ -112,7 +112,7 @@ successiva estrazione.
 Stesso   principio:   processo  fisico  sotto  controllo  diretto,  registrato
 integralmente, indipendente dalle altre sorgenti.
 
-Ordine fisso: PALLINA -> DADO -> MONETA.
+Ordine fisso: MONETA -> DADO -> PALLINA.
 Usare  8  numeri  da  1  a  8 (tombola o bingo) e reinserire ogni pallina dopo
 l'estrazione.
 Dado: usare la codifica pratica 1-4 scelta; se esce 5 o 6, rilanciare il dado.
@@ -121,27 +121,27 @@ Fissare  questa  o  altre  convenzioni  prima di iniziare e mantenerle durante t
 fase.
 Completare  almeno  60/80  turni validi. Non eliminare, riordinare o scegliere
 risultati dopo averli visti.
-Convertire  i  risultati  ottenuti  in  bit  (pallina->3bit / dado->1 o 2bit a
-seconda del metodo scelto / moneta->1bit) per tutti i turni effettuati, sempre
+Convertire  i  risultati  ottenuti  in  bit  (moneta->1bit / dado->1 o 2bit a
+seconda del metodo scelto / pallina->3bit) per tutti i turni effettuati, sempre
 rigorosamente con lo stesso ordine una volta iniziata questa fase.
-Si  puo'  in  caso  fare prima tutte e 80 le estrazioni del dado, poi 80 della
-moneta,  poi  della  pallina: l'importante e' riportare correttamente tutto in
-sequenza  e convertire con la stessa sequenza scelta all'inizio cio' che si e'
-ottenuto.
+Si  puo'  in  caso  fare prima tutti gli 80 lanci della moneta, poi gli 80 del
+dado,  poi  le  80  estrazioni  della  pallina:  l'importante  e'  riportare
+correttamente tutto in sequenza e convertire con la stessa sequenza scelta
+all'inizio cio' che si e' ottenuto.
 
 3.E Griglia compatta - esempio di registrazione (60/80 turni)
 
 Registrare solo i valori e i bit, senza note.
-Pallina->3bit | Dado->1 o 2bit | Moneta->1bit
-+----+----+--------+---+--------+----+-------+
-| #  | Pa | P-bit  |Da | D-bit  | Mo |bit out|
-+----+----+--------+---+--------+----+-------+
-| 1  | 8  | 111    | 2 | 0      |(T)0| 11100 |
-| 2  |    |        |   |        |    |       |
-| 3  |    |        |   |        |    |       |
+Moneta->1bit | Dado->1 o 2bit | Pallina->3bit
++----+----+---+--------+----+--------+-------+
+| #  | Mo |Da | D-bit  | Pa | P-bit  |bit out|
++----+----+---+--------+----+--------+-------+
+| 1  |(T)0| 2 | 0      | 8  | 111    | 00111 |
+| 2  |    |   |        |    |        |       |
+| 3  |    |   |        |    |        |       |
 ....
-| 80 |    |        |   |        |    |       |
-+----+----+--------+---+--------+----+-------+
+| 80 |    |   |        |    |        |       |
++----+----+---+--------+----+--------+-------+
 
 4. Concatenazione
 1. Portare tutte le sequenze grezze nell'ambiente live.
