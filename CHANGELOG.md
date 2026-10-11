@@ -2,6 +2,18 @@
 
 Cronologia delle modifiche ai file di questo repository. Le date sono quelle della pubblicazione.
 
+## 2026-10-11 — README: verifica non-IID per flusso; registro spostato
+
+- **File modificato:** `README.md` (SHA-256 `a2402721f381d59fd93a5f97e7bc1ad9a62d9ef4455f1a1e63c5351ef3d44c20`).
+  - 1.1: impronte SHA-256 della pagina e dello script di verifica non-IID (repository ea-non-iid-verifica, tag v1.1.0-beta1).
+  - Nuova sezione 3.E: verifica non-IID di ogni flusso come primo filtro, prima della concatenazione.
+  - Sezione 8 (Durante) e sezione 10 (Flusso riepilogativo): passo di verifica per flusso.
+  - Disclaimer: lo strumento non certifica sorgenti né seed.
+  - Rimossa la sezione "Avanzamento" (registro di lavoro), spostata in `AVANZAMENTO.md`.
+- **File nuovo:** `AVANZAMENTO.md` (SHA-256 `1be77da7d1f6c2e93c38da9369398721088ca565e1d8d9bd4975124b05291974`): registro di lavoro del progetto, spostato dal README con contenuto invariato.
+- **Scelta di riferimento:** la soglia 1,00 bit per bit è il valore ideale di riferimento, non vincolante. Chi conduce la cerimonia la fissa prima di iniziare e la applica a tutti i flussi.
+- **Non modificato:** `procedura operativa`, `entropy-toolkit-guida-rapida (2).pptx`, `LICENSE`.
+
 ## 2026-10-04 — procedura operativa: ordine MONETA -> DADO -> PALLINA
 
 - **File modificato:** `procedura operativa` (testo, 11.718 byte, SHA-256 `001e9ce0cec059e89cdbdcb5340bf13b468d3749353d126ca58b1a8f96b9fecb`) diventa di 11.738 byte con SHA-256 `1f42da6f8a88b24a1ea5fc4983152cd5244e1a9bf574975ae4ebfda02ba09ddf`.

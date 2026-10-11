@@ -32,6 +32,10 @@ Verificare SHA256 e firma GPG da fonti multiple
 # Preparazione chiavette
 Scrivere ISO su chiavetta dedicata (dd o equivalente)
 Su seconda chiavetta: HTML + script estrazione revisionati
+
+# Verifica dei file di verifica non-IID (repository ea-non-iid-verifica, tag v1.1.0-beta1)
+Pagina HTML:  b1c981676bed8fad83242d5b92dcff528408c7d744ec98442084c4bb70dfe8eb
+Script Python: c19937184793c6df5ebd3c1c5bb3bf1ae619752ac561335a03529ccca7cf4c57
 ```
 
 **⚠️ Importante:** Nulla da rete, tutto verificato offline.
@@ -84,7 +88,7 @@ Eseguire in **ordini e momenti separati**. Mantenere flussi distinti fino alla c
 - Runs
 - Match lag-1
 
-**Output:** `.bin` su supporto temporaneo o RAM  
+**Output:** `.bin` su supporto temporaneo o RAM
 **Annotare su carta:**
 - Bit validi
 - Remainder
@@ -117,6 +121,23 @@ Eseguire in **ordini e momenti separati**. Mantenere flussi distinti fino alla c
 • Indipendente dalle altre sorgenti
 ```
 
+### 3.E — Verifica Non-IID di Ogni Flusso (primo filtro)
+
+Ogni flusso grezzo, prima della concatenazione, va verificato con lo strumento **ea-non-iid-verifica** (repository e tag v1.1.0-beta1 su GitHub). Lo strumento stima la min-entropia dei dati con i dieci stimatori dello standard NIST SP 800-90B per sorgenti non-IID.
+
+```
+• Un file per flusso, byte grezzi, 8 bit per simbolo (o il formato annotato prima)
+• Almeno 1.000.000 di simboli: sotto questa soglia il calcolo non è affidabile
+• Annotare sul foglio: valore per bit, stimatore che dà il minimo, soglia usata
+• Conservare il rapporto di verifica; il file estratto (.bin) non si conserva
+```
+
+**Soglia.** Il valore ideale è **1,00 bit per bit**: entropia piena. È un riferimento, non una soglia vincolante. Chi conduce la cerimonia sceglie la soglia prima di iniziare, la annota e la applica a tutti i flussi nello stesso modo. Non si cambia a posteriori per far passare un flusso.
+
+**Il verdetto dello strumento** (utilizzabile / non utilizzabile) dipende dalla soglia impostata e non è una decisione automatica. Con la soglia ideale, un flusso sotto 1,00 risulta "non utilizzabile": il valore reale va comunque annotato, e la decisione di includerlo o meno resta a chi conduce la cerimonia, documentata.
+
+**Limiti.** Lo strumento misura la prevedibilità dei dati che riceve, non la sorgente fisica. Non certifica né la sorgente né il seed. Non sostituisce i controlli della sezione 8.
+
 ---
 
 ## 🔗 4. Concatenazione
@@ -141,7 +162,7 @@ Su sorgenti sbilanciate o sul flusso concatenato:
   • Scartare coppie uguali (00, 11)
   • 01 → 0
   • 10 → 1
-  
+
 Nota: Può essere sostituito con Peres
 ```
 
@@ -218,6 +239,7 @@ Sulla stringa estratta applicare **unica condensazione crittografica robusta:**
 ```
 → Se sorgente mostra bias evidente: scartarla e ripeterla
 → Non "aggiustare" i dati
+→ Verificare ogni flusso con lo strumento non-IID (sezione 3.E) e annotare il valore per bit
 ```
 
 ### Dopo
@@ -251,6 +273,8 @@ RAW unici + dark frame → HTML → bit grezzi
 Moneta (procedura fissa)
 Dadi (procedura fissa)
 Altra sorgente indipendente
+      ↓
+Verifica non-IID per flusso (primo filtro, sezione 3.E)
       ↓
 Concatenazione (ordine fisso predeciso)
       ↓
@@ -294,38 +318,10 @@ Restano **differenze strutturali** rispetto a hardware wallet dedicato:
 > **Documento destinato a scopo educativo ad uso personale offline.**
 >
 > **Nessuna garanzia di idoneità a generazione di chiavi per fondi di elevato valore senza ulteriori controlli indipendenti.**
+>
+> Lo strumento di verifica non-IID citato nella sezione 3.E non certifica sorgenti né seed.
 
 ---
 
-**Lingua:** Italiano  
+**Lingua:** Italiano
 **Status:** ⚠️ Educational Only
-
-# Avanzamento: progetto entropia su Raspberry Pi 5
-
-Aggiornato il 24 settembre 2026.
-
-## Piattaforma
-- Raspberry Pi 5 (8 GB), microSD 128 GB
-- Raspberry Pi OS 64-bit con desktop, Debian 13 "trixie", aarch64
-- Il container di test sul NAS usa `debian:bookworm`, quindi compilatore e librerie sono più vecchie di quelle del Pi: i risultati vanno confrontati a parità di file.
-
-## Toolchain compilato sul Pi (in `~/tools`)
-- `arcetri/sts` v3.2.7
-- `SP800-90B_EntropyAssessment`: `ea_iid`, `ea_non_iid`, `ea_restart`, `ea_conditioning`, `ea_transpose`
-- `PractRand` pre0.95 (`RNG_test`)
-- Pacchetti apt installati e verificati: gcc, make, git, wget, unzip, xxd, file, sox, python3, dieharder, ent, python3-matplotlib 3.10.1
-
-## Validazione della build (in corso)
-- PractRand su 64 MB da `/dev/urandom`: nessuna anomalia in 182 risultati.
-- File di prova `test_urandom_1MB.bin` (1 MB da `/dev/urandom`),
-  sha256 `32edce6557e97a3702d84aa00fed21e405065f0cf7bea13deee696a8f23700de`.
-- `ea_non_iid -v` sul Pi 5: `H_original` 7.276950, `H_bitstring` 0.890793, minimo 7.126346.
-  Sono stime prudenti su 1 MB, non vanno lette come misura precisa della sorgente.
-- Sul NAS le prime 11 stime coincidono con quelle del Pi; il risultato finale del NAS è ancora da confrontare.
-
-## Da fare
-- Prova di `sts` sul Pi.
-- Confronto completo (STS e PractRand) sul file Tascam a 6 bit già analizzato sul NAS.
-- Annotare gli hash dei commit di `sts` e `SP800-90B_EntropyAssessment` (`git rev-parse HEAD`).
-- Portare sul Pi script Python e repo del progetto, poi isolare la macchina (nessuna rete) prima della generazione dei seed.
-
