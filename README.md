@@ -125,19 +125,22 @@ Eseguire in **ordini e momenti separati**. Mantenere flussi distinti fino alla c
 
 Ogni flusso grezzo, prima della concatenazione, va verificato con lo strumento **ea-non-iid-verifica** (repository e tag v1.1.0-beta1 su GitHub). Lo strumento stima la min-entropia dei dati con i dieci stimatori dello standard NIST SP 800-90B per sorgenti non-IID.
 
-```
-• Un file per flusso, byte grezzi, 8 bit per simbolo (o il formato annotato prima)
-• Almeno 1.000.000 di simboli: sotto questa soglia il calcolo non è affidabile
-• Annotare sul foglio: valore per bit, stimatore che dà il minimo, soglia usata
-• Conservare il rapporto di verifica; il file estratto (.bin) non si conserva
-```
+~~
+- Un file per flusso, byte grezzi, 8 bit per simbolo (o il formato annotato prima)
+- Almeno 1.000.000 di simboli per la validazione NIST; con meno campioni la stima è un'indicazione, non una validazione
+- Annotare sul foglio: valore per bit finale, stimatore che dà il minimo, H_bitstring (valore intermedio), soglia usata
+- Conservare il rapporto di verifica; il file estratto (.bin) non si conserva
+~~
 
-**Soglia.** Il valore ideale è **1,00 bit per bit**: entropia piena. È un riferimento, non una soglia vincolante. Chi conduce la cerimonia sceglie la soglia prima di iniziare, la annota e la applica a tutti i flussi nello stesso modo. Non si cambia a posteriori per far passare un flusso.
+**Valore per bit.** Con 8 bit per simbolo, il valore per bit è quello finale del programma NIST `ea_non_iid`: min(H_original, 8 × H_bitstring) / 8. Il valore intermedio H_bitstring si annota a parte, come valore per bit del solo bitstring.
 
-**Il verdetto dello strumento** (utilizzabile / non utilizzabile) dipende dalla soglia impostata e non è una decisione automatica. Con la soglia ideale, un flusso sotto 1,00 risulta "non utilizzabile": il valore reale va comunque annotato, e la decisione di includerlo o meno resta a chi conduce la cerimonia, documentata.
+**Soglia.** Il valore ideale è **1,00 bit per bit**: entropia piena. È un riferimento, non una soglia vincolante. Chi conduce la cerimonia sceglie la soglia prima di iniziare, tra 0,90 e 1,00, la annota e la applica a tutti i flussi nello stesso modo. Non si cambia a posteriori per far passare un flusso.
+
+**Limite osservato.** Su 1.000.000 di byte di `/dev/urandom` il valore per bit finale è 0,829801, con H_bitstring 0,935706. Con questo file il valore ideale 1,00 non viene raggiunto, quindi un flusso può risultare non utilizzabile anche se la sorgente è buona. Il verdetto va letto con questo limite.
+
+**Il verdetto dello strumento** (utilizzabile / non utilizzabile) dipende dalla soglia impostata e non è una decisione automatica. Un flusso sotto la soglia scelta va annotato con il valore reale, e la decisione di includerlo o meno resta a chi conduce la cerimonia, documentata.
 
 **Limiti.** Lo strumento misura la prevedibilità dei dati che riceve, non la sorgente fisica. Non certifica né la sorgente né il seed. Non sostituisce i controlli della sezione 8.
-
 ---
 
 ## 🔗 4. Concatenazione

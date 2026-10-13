@@ -2,6 +2,16 @@
 
 Cronologia delle modifiche ai file di questo repository. Le date sono quelle della pubblicazione.
 
+## 2026-10-13 — README: sezione 3.E, valore per bit e limite dello strumento (non ancora pubblicata)
+
+- **File modificato:** `README.md` (SHA-256 `46d24cf23fcc88cd34dd850911dcf69f4fdfed6442b4b35c1d02403e9a081374`).
+  - Sezione 3.E: il valore per bit è quello finale del programma NIST `ea_non_iid` con 8 bit per simbolo, min(H_original, 8 × H_bitstring) / 8; H_bitstring si annota come valore intermedio.
+  - Soglia: 1,00 bit per bit è il riferimento ideale; chi conduce la cerimonia sceglie la soglia tra 0,90 e 1,00 prima di iniziare.
+  - Limite osservato: su 1.000.000 di byte di `/dev/urandom` il valore per bit finale è 0,829801, con H_bitstring 0,935706.
+  - Requisito di campioni: sotto 1.000.000 simboli la stima è un'indicazione, non una validazione NIST.
+- **Nota:** la voce del 2026-10-11 resta come cronologia della versione pubblicata; la presente la aggiorna per la sezione 3.E.
+- **Stato:** modifica non ancora committata né pubblicata; la data va confermata alla pubblicazione.
+
 ## 2026-10-11 — README: verifica non-IID per flusso; registro spostato
 
 - **File modificato:** `README.md` (SHA-256 `a2402721f381d59fd93a5f97e7bc1ad9a62d9ef4455f1a1e63c5351ef3d44c20`).
